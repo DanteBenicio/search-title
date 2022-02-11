@@ -30,7 +30,7 @@ function App() {
     <section className="section_container">
       <div className="input_group">
         <label htmlFor="input-search">Buscar Titulo</label>
-        <input type="text" id="input-search" />
+        <input type="text" id="input-search" onChange={handleSearchTitle} />
       </div>
       <main className="posts_container">
         {posts.map((post) => (

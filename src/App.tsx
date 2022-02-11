@@ -34,9 +34,7 @@ function App() {
       const filteredPosts = posts.filter((post) => post.title.includes(searchValue));
 
       if (!filteredPosts.length) {
-        setMessage({
-          message: 'Posts não encontrado',
-        });
+        setMessage('Posts não encontrado.');
       }
 
       setPosts(filteredPosts);
@@ -62,7 +60,7 @@ function App() {
       </div>
       <main className="posts_container">
         {!posts.length && (
-          <p>{message?.message}</p>
+          <p>{message}</p>
         )}
         {posts.map((post) => (
           <article className="post" key={post.id}>

@@ -12,6 +12,7 @@ type PostsProps = {
 
 function App() {
   const [posts, setPosts] = useState<PostsProps[]>([]);
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
     (async () => {

@@ -33,6 +33,9 @@ function App() {
         <input type="text" id="input-search" onChange={handleSearchTitle} />
       </div>
       <main className="posts_container">
+        {!posts.length && (
+          <p>{message?.message}</p>
+        )}
         {posts.map((post) => (
           <article className="post" key={post.id}>
             <h2>{post.title}</h2>

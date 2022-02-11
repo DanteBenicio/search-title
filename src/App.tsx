@@ -1,6 +1,14 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import './App.css';
+
+type PostsProps = {
+  title: string,
+  body: string,
+  id: number,
+  userId: number
+}
 
 function App() {
   const [posts, setPosts] = useState([]);

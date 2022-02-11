@@ -3,7 +3,20 @@ import logo from './logo.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
+        const { data } = response;
+
+        setPosts(data);
+      } catch (error) {
+        console.error(error);
+      }
+    })();
+  }, []);
 
   return (
     <div className="App">

@@ -1,9 +1,17 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import './App.css';
+
+type PostsProps = {
+  title: string,
+  body: string,
+  id: number,
+  userId: number
+}
 
 function App() {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<PostsProps[]>([]);
 
   useEffect(() => {
     (async () => {
@@ -19,40 +27,21 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
-  )
+    <section className="section_container">
+      <div className="input_group">
+        <label htmlFor="input-search">Buscar Titulo</label>
+        <input type="text" id="input-search" />
+      </div>
+      <main className="posts_container">
+        {posts.map((post) => (
+          <article className="post" key={post.id}>
+            <h2>{post.title}</h2>
+            <p>{post.body}</p>
+          </article>
+        ))}
+      </main>
+    </section>
+  );
 }
 
 export default App

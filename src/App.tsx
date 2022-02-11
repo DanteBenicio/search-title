@@ -26,6 +26,33 @@ function App() {
     })();
   }, []);
 
+  function handleSearchTitle(e: ChangeEvent<HTMLInputElement>) {
+    const searchValue = e.target.value.toLowerCase();
+
+    if (searchValue) {
+      const filteredPosts = posts.filter((post) => post.title.includes(searchValue));
+
+      if (!filteredPosts.length) {
+        setMessage({
+          message: 'Posts não encontrado',
+        });
+      }
+
+      setPosts(filteredPosts);
+    } else {
+      (async () => {
+        try {
+          const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
+          const { data } = response;
+
+          setPosts(data);
+        } catch (error) {
+          console.error(error);
+        }
+      })();
+    }
+  }
+
   return (
     <section className="section_container">
       <div className="input_group">
